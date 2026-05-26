@@ -1,38 +1,37 @@
 package dev.fix85.selfnametag;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import net.minecraft.text.Text;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 
 public class SelfNametagClient implements ClientModInitializer {
     public static final String MOD_ID = "selfnametag";
 
-    public static KeyBinding toggleKey;
+    public static KeyMapping toggleKey;
 
     @Override
     public void onInitializeClient() {
         Config.load();
 
-        toggleKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+        toggleKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.selfnametag.toggle",
-                InputUtil.Type.KEYSYM,
+                InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_N,
-                KeyBinding.Category.MISC
+                KeyMapping.Category.MISC
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (toggleKey.wasPressed()) {
+            while (toggleKey.consumeClick()) {
                 Config.get().enabled = !Config.get().enabled;
                 Config.save();
                 if (client.player != null) {
                     String state = Config.get().enabled ? "§aON§r" : "§cOFF§r";
-                    client.player.sendMessage(
-                            Text.translatable("selfnametag.chat.toggle", state),
-                            true);
+                    client.player.sendOverlayMessage(
+                            Component.translatable("selfnametag.chat.toggle", state));
                 }
             }
         });
