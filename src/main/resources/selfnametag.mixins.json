@@ -2,8 +2,9 @@
   "required": true,
   "package": "dev.fix85.selfnametag.mixin",
   "compatibilityLevel": "JAVA_21",
+  "refmap": "selfnametag.refmap.json",
   "client": [
-    "AbstractClientPlayerEntityMixin"
+    "LivingEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
