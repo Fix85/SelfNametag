@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "selfnametag",
+  "version": "${version}",
+  "name": "Self Nametag",
+  "description": "Shows your own nametag above your head when you switch to third-person view (F5). / Показывает ваш собственный никнейм над головой при переключении в третье лицо (F5).",
+  "authors": [
+    "Fix85"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Fix85/SelfNametag",
+    "sources": "https://github.com/Fix85/SelfNametag",
+    "issues": "https://github.com/Fix85/SelfNametag/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/selfnametag/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.fix85.selfnametag.SelfNametagClient"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "selfnametag.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
