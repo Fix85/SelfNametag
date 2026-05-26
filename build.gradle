@@ -12,22 +12,13 @@ base {
 
 repositories {}
 
-loom {
-    splitEnvironmentSourceSets()
-
-    mods {
-        "selfnametag" {
-            sourceSet sourceSets.main
-            sourceSet sourceSets.client
-        }
-    }
-}
+loom {}
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
 
     implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    clientImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
 processResources {

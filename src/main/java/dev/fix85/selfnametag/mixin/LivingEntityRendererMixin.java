@@ -2,23 +2,24 @@ package dev.fix85.selfnametag.mixin;
 
 import dev.fix85.selfnametag.Config;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(Player.class)
-public abstract class PlayerMixin {
+@Mixin(LivingEntityRenderer.class)
+public class LivingEntityRendererMixin<T extends LivingEntity> {
 
-    @Inject(method = "shouldShowName", at = @At("HEAD"), cancellable = true)
-    private void selfnametag$forceShowOwnName(CallbackInfoReturnable<Boolean> cir) {
+    @Inject(method = "shouldShowName(Lnet/minecraft/world/entity/LivingEntity;)Z", at = @At("HEAD"), cancellable = true, remap = false)
+    private void selfnametag$forceShowOwnName(T entity, CallbackInfoReturnable<Boolean> cir) {
         if (!Config.get().enabled) return;
 
         Minecraft mc = Minecraft.getInstance();
         if (mc == null) return;
         if (mc.player == null) return;
-        if ((Object) this != mc.player) return;
+        if (entity != mc.player) return;
         if (mc.options == null || mc.options.getCameraType() == null) return;
         if (mc.options.getCameraType().isFirstPerson()) return;
 

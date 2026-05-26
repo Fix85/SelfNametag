@@ -3,7 +3,7 @@
   "package": "dev.fix85.selfnametag.mixin",
   "compatibilityLevel": "JAVA_25",
   "client": [
-    "PlayerMixin"
+    "LivingEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
