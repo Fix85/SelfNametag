@@ -21,7 +21,7 @@ public class SelfNametagClient implements ClientModInitializer {
                 "key.selfnametag.toggle",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_N,
-                KeyBinding.Category.MISC
+                "key.categories.misc"
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
