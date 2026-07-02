@@ -13,6 +13,7 @@ Fabric client mod that shows your own nametag above your head when in third-pers
 | `mc-1.21.8` | 1.21.8 | 21 | yarn |
 | `mc-1.21.11` | 1.21.11 | 21 | yarn |
 | `mc-26.1` | 26.1.x | 25 | Mojang |
+| `mc-26.2` | 26.2 | 25 | Mojang |
 
 ## English
 
