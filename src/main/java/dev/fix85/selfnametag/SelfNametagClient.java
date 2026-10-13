@@ -6,7 +6,6 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.network.chat.Component;
-import org.lwjgl.glfw.GLFW;
 
 public class SelfNametagClient implements ClientModInitializer {
     public static final String MOD_ID = "selfnametag";
@@ -19,8 +18,8 @@ public class SelfNametagClient implements ClientModInitializer {
 
         toggleKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.selfnametag.toggle",
-                InputConstants.Type.KEYSYM,
-                GLFW.GLFW_KEY_N,
+                InputConstants.Type.KEYBOARD,
+                InputConstants.KEY_N,
                 KeyMapping.Category.MISC
         ));
 
